@@ -28,7 +28,7 @@ public class SpringWebSocketHandler extends TextWebSocketHandler {
 
     public SpringWebSocketHandler() {
     }
-
+    @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 
         if (wsConnectionMap.size() < maximumPoolSize ) {
@@ -50,6 +50,7 @@ public class SpringWebSocketHandler extends TextWebSocketHandler {
     /**
      * 关闭连接时触发
      */
+    @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) throws Exception {
         if(wsConnectionMap.containsKey(session)){
             wsConnectionMap.get(session).exit();
@@ -71,7 +72,7 @@ public class SpringWebSocketHandler extends TextWebSocketHandler {
 
 
     }
-
+    @Override
     public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
         if(session.isOpen()){
             session.close();
@@ -82,7 +83,7 @@ public class SpringWebSocketHandler extends TextWebSocketHandler {
             logger.info("Exec disconnected because of error ... count:" + wsConnectionMap.size());
         }
     }
-
+    @Override
     public boolean supportsPartialMessages() {
         return false;
     }

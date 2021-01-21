@@ -11,3 +11,5 @@ spring:
 kubernetes:
   config:
     config-path: /root/.kube/config
+    master: 10.68.7.127:6443
+    token: D:/k8s/127/token
